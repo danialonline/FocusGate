@@ -1,0 +1,16 @@
+<Window x:Class="FocusGate.Desktop.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="FocusGate" Width="700" Height="690" Background="#151922" Foreground="White">
+<ScrollViewer><StackPanel Margin="26">
+<TextBlock Text="FocusGate" FontSize="30" FontWeight="Bold" Margin="0,0,0,8"/>
+<TextBlock Text="Google Tasks + Calendar driven blocking" Foreground="#B6BFCE" Margin="0,0,0,20"/>
+<TextBlock Text="Google OAuth desktop client JSON path"/><TextBox Name="OAuthPath" Margin="0,5,0,12" Padding="7"/>
+<Button Content="Connect Google / Test Sync" Click="Connect_Click" Padding="9" Margin="0,0,0,14"/>
+<TextBlock Name="Status" Text="Not connected" TextWrapping="Wrap" Margin="0,0,0,15"/>
+<TextBlock Text="Rule name"/><TextBox Name="RuleName" Text="My focus rule" Padding="7" Margin="0,5,0,12"/>
+<TextBlock Text="Block mode"/><ComboBox Name="Mode" SelectedIndex="1" Margin="0,5,0,12"><ComboBoxItem Content="Permanent"/><ComboBoxItem Content="Tasks"/><ComboBoxItem Content="Calendar"/><ComboBoxItem Content="Either"/><ComboBoxItem Content="Both"/></ComboBox>
+<TextBlock Text="Domains (one per line, e.g. youtube.com)"/><TextBox Name="Domains" AcceptsReturn="True" Height="65" Padding="7" Margin="0,5,0,12"/>
+<TextBlock Text="Process executable names (one per line, e.g. Discord.exe)"/><TextBox Name="Executables" AcceptsReturn="True" Height="65" Padding="7" Margin="0,5,0,12"/>
+<Button Content="Save rule" Click="Save_Click" Padding="10" Margin="0,0,0,10"/>
+<Button Content="Delete selected rule (only when unlocked)" Click="Delete_Click" Padding="8" Margin="0,0,0,12"/>
+<ListBox Name="Rules" Height="100"/>
+<TextBlock Text="Strict lock: while a lock is active, rule edits and deletions are refused by the UI. Emergency recovery requires Windows administrator access." TextWrapping="Wrap" Foreground="#B6BFCE" Margin="0,12,0,0"/>
+</StackPanel></ScrollViewer></Window>

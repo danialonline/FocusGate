@@ -1,0 +1,26 @@
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+  <Package Name="FocusGate" Manufacturer="FocusGate" Version="0.2.0" UpgradeCode="8D11A9F4-7A65-4C79-80E5-4BB63181D73D" Scope="perMachine">
+    <MajorUpgrade DowngradeErrorMessage="A newer version is installed." />
+    <MediaTemplate EmbedCab="yes" />
+    <StandardDirectory Id="ProgramFiles64Folder">
+      <Directory Id="INSTALLFOLDER" Name="FocusGate" />
+    </StandardDirectory>
+    <StandardDirectory Id="ProgramMenuFolder">
+      <Directory Id="AppMenu" Name="FocusGate" />
+    </StandardDirectory>
+    <Feature Id="Main">
+      <ComponentRef Id="ServiceComponent" />
+      <ComponentRef Id="DesktopComponent" />
+    </Feature>
+    <Component Id="ServiceComponent" Directory="INSTALLFOLDER" Guid="*">
+      <File Id="ServiceExe" Source="publish\service\FocusGate.Service.exe" KeyPath="yes" />
+      <ServiceInstall Id="InstallService" Name="FocusGate" DisplayName="FocusGate Blocking Service" Description="FocusGate rule enforcement" Start="auto" Type="ownProcess" ErrorControl="normal" Account="LocalSystem" />
+      <ServiceControl Id="ControlService" Name="FocusGate" Start="install" Stop="both" Remove="uninstall" Wait="yes" />
+    </Component>
+    <Component Id="DesktopComponent" Directory="INSTALLFOLDER" Guid="*">
+      <File Id="DesktopExe" Source="publish\desktop\FocusGate.Desktop.exe" KeyPath="yes" />
+      <Shortcut Id="StartShortcut" Directory="AppMenu" Name="FocusGate" Target="[#DesktopExe]" WorkingDirectory="INSTALLFOLDER" />
+      <RemoveFolder Id="RemoveAppMenu" Directory="AppMenu" On="uninstall" />
+    </Component>
+  </Package>
+</Wix>
